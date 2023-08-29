@@ -1,74 +1,82 @@
 const container_produto = document.querySelector("#container-produto")
 
-let produto = [
+const produto = [
     {
         id: 1,
         nome: "Camisa Larga com Bolsos",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 70,
-        img: "./assets/img/product-1.jpg"
+        img: "./assets/img/product-1.jpg",
+        female: false
     },
     {
         id: 2,
         nome: "Casaco Reto com Lã",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 85,
-        img: "./assets/img/product-2.jpg"
+        img: "./assets/img/product-2.jpg",
+        female: true
     },
     {
         id: 3,
         nome: "Jaqueta com Efeito Camurça",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 60,
-        img: "./assets/img/product-3.jpg"
+        img: "./assets/img/product-3.jpg",
+        female: false
     },
     {
         id: 4,
         nome: "Sobretudo em Mescla de Lã",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 160,
-        img: "./assets/img/product-4.jpg"
+        img: "./assets/img/product-4.jpg",
+        female: false
     },
     {
         id: 5,
         nome: "Camisa Larga Acolchoada de Veludo Cotelê",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 110,
-        img: "./assets/img/product-5.jpg"
+        img: "./assets/img/product-5.jpg",
+        female: false
     },
     {
         id: 6,
         nome: "Casaco de Lã com Botões",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 170,
-        img: "./assets/img/product-6.jpg"
+        img: "./assets/img/product-6.jpg",
+        female: true
     },
     {
         id: 7,
         nome: "Casaco com Botões",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 75,
-        img: "./assets/img/product-7.jpg"
+        img: "./assets/img/product-7.jpg",
+        female: true
     },
     {
         id: 8,
         nome: "Colete Comprido com Cinto",
-        fabricante: "Zara",
+        marca: "Zara",
         preco: 88,
-        img: "./assets/img/product-8.jpg"
+        img: "./assets/img/product-8.jpg",
+        female: true
     },
 ]
 
 const criarCard = () =>{
-    for (i in produto){
+    for (let i in produto){
         let card = document.createElement("div")
         card.setAttribute("class", "card-produto")
 
         let card_img = document.createElement("img")
         card_img.setAttribute("src", produto[i].img)
 
-        let card_fabricante = document.createElement("p")
-        card_fabricante.textContent = produto[i].fabricante
+        let card_marca = document.createElement("p")
+        card_marca.textContent = produto[i].marca
 
         let card_nome = document.createElement("p")
         card_nome.textContent = produto[i].nome
@@ -78,7 +86,7 @@ const criarCard = () =>{
 
         container_produto.appendChild(card)
         card.appendChild(card_img)
-        card.appendChild(card_fabricante)
+        card.appendChild(card_marca)
         card.appendChild(card_nome)
         card.appendChild(card_preco)
 
@@ -87,7 +95,5 @@ const criarCard = () =>{
         card.appendChild(card_button)
 
     }
-
-    // console.log(produto[i].preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"}))
 }
 criarCard()
