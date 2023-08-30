@@ -1,4 +1,3 @@
-const container_produto = document.querySelector("#container-produto")
 
 const produto = [
     {
@@ -68,9 +67,13 @@ const produto = [
 ]
 
 const criarCard = () =>{
+    const container_produto = document.querySelector("#container-produto")
+    container_produto.setAttribute("class", "flex flex-wrap")
+
     for (let i in produto){
         let card = document.createElement("div")
-        card.setAttribute("class", "card-produto")
+        card.setAttribute("id", `card-produto-${produto[i].id}`)
+        card.setAttribute("class", "card-produto border-solid border-2 border-sky-500 w-48 m-2")
 
         let card_img = document.createElement("img")
         card_img.setAttribute("src", produto[i].img)

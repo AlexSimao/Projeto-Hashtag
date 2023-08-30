@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.card-produto img{
-    width: 200px;
-}
+/* header{
+    background-color: #022c22;
+} */
