@@ -5,20 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <header class="bg-emerald-950 flex justify-between items-center text-white p-2">
+  <header class="bg-emerald-950 flex justify-between  text-white p-2">
     <div class="flex">
       <img src="assets/logo/img-amp.svg" alt="imagem Aleatória" class="h-16">
       <img src="assets/logo/hashtag.svg" alt="Logo da Hashtag" class="h-16">
     </div>
-    <div>
-      <button class="border-solid border-2">Histórico</button>
-      <button class="border-solid border-2">Carrinho</button>
+    
+    <div class="flex gap-4 items-end p-2">
+      <button><i class="fa-solid fa-cart-shopping"></i> Carrinho</button>
+      <button><i class="fa-solid fa-user"></i> Histórico</button>
     </div>
   </header>
+
+  <section id="carrinho" class="bg-emerald-950 bg-opacity-50 fixed top-0 right-0 h-screen w-[360px] text-white">
+    <div id="carrinho-header">
+      <p>Meu Carrinho</p>
+    </div>
+
+    <div id="carrinho-main">
+
+    </div>
+  </section>
+
   <main>
-    <section id="container-produto">
+    <section id="container-produto" class="flex flex-wrap justify-center">
       <!-- <div class="card-produto">
         <img src="assets/img/product-1.jpg" alt="Produto 1">
         <p>Zara</p>

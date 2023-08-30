@@ -68,7 +68,6 @@ const produto = [
 
 const criarCard = () =>{
     const container_produto = document.querySelector("#container-produto")
-    container_produto.setAttribute("class", "flex flex-wrap")
 
     for (let i in produto){
         let card = document.createElement("div")
