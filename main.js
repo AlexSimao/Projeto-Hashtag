@@ -73,7 +73,7 @@ const criarCard = () =>{
     for (let i in produto){
         let card = document.createElement("div")
         card.setAttribute("id", `card-produto-${produto[i].id}`)
-        card.setAttribute("class", "card-produto border-solid border-2 border-sky-500 w-48 m-2")
+        card.setAttribute("class", "card-produto border-solid border-2 border-sky-500 w-48 box-shadow")
 
         let card_img = document.createElement("img")
         card_img.setAttribute("src", produto[i].img)
