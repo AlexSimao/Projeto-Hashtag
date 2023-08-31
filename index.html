@@ -13,20 +13,28 @@
       <img src="assets/logo/img-amp.svg" alt="imagem Aleatória" class="h-16">
       <img src="assets/logo/hashtag.svg" alt="Logo da Hashtag" class="h-16">
     </div>
-    
+
     <div class="flex gap-4 items-end p-2">
-      <button><i class="fa-solid fa-cart-shopping"></i> Carrinho</button>
-      <button><i class="fa-solid fa-user"></i> Histórico</button>
+      <button id="btn-carrinho"><i class="fa-solid fa-cart-shopping"></i> Carrinho</button>
+      <button id="btn-historico"><i class="fa-solid fa-user"></i> Histórico</button>
     </div>
   </header>
 
-  <section id="carrinho" class="bg-emerald-950 bg-opacity-50 fixed top-0 right-0 h-screen w-[360px] text-white">
-    <div id="carrinho-header">
+  <section id="carrinho" class="bg-emerald-950 bg-opacity-90 fixed top-0 right-0 h-screen w-[360px] text-white hidden overflow-hidden">
+    <div id="carrinho-header" class="flex justify-between items-center p-4">
       <p>Meu Carrinho</p>
+      <button id="btn-fechar-carrinho"><i class="fa-solid fa-circle-xmark text-4xl"></i></button>
     </div>
 
-    <div id="carrinho-main">
+    <div id="produto-carrinho" >
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>Lorem ipsum dolor sit amet.</p>
 
+      <div class="flex justify-around items-center mt-4">
+        <p id="preco-total">Preço Total: <span>$$$</span></p>
+        <button id="btn-finalizar-compra" class="text-black font-bold p-1 bg-white">Finalizar Compra</button>
+      </div>
     </div>
   </section>
 
@@ -92,5 +100,6 @@
   </main>
 
   <script src="main.js"></script>
+  <script src="src/menu-carrinho.js"></script>
 </body>
 </html>
