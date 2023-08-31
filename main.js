@@ -1,3 +1,4 @@
+import { inicializarCarrinho } from "./src/menu-carrinho"
 
 const produto = [
     {
@@ -99,3 +100,5 @@ const criarCard = () =>{
     }
 }
 criarCard()
+
+inicializarCarrinho()
