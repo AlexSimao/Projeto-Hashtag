@@ -1,4 +1,5 @@
 import { inicializarCarrinho } from "./src/menu-carrinho"
+import { chamarCard } from "./src/menu-carrinho"
 
 const produto = [
     {
@@ -95,10 +96,12 @@ const criarCard = () =>{
 
         let card_button = document.createElement("button")
         card_button.textContent = "Adicionar"
-        card.appendChild(card_button)
 
+        card.appendChild(card_button)
     }
 }
 criarCard()
 
 inicializarCarrinho()
+
+chamarCard()

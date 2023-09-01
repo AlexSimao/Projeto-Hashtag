@@ -18,26 +18,30 @@
     </div>
 
     <div class="flex gap-6 items-end">
-      <button id="btn-carrinho" class=""><i class="fa-solid fa-cart-shopping text-xl"></i> Carrinho</button>
-      <button id="btn-historico" class=""><i class="fa-solid fa-user text-xl"></i> Histórico</button>
+      <button id="btn-carrinho" class=" active:text-stone-400"><i class="fa-solid fa-cart-shopping text-xl"></i> Carrinho</button>
+      <button id="btn-historico" class=" active:text-stone-400"><i class="fa-solid fa-user text-xl"></i> Histórico</button>
     </div>
   </header>
 
-  <section id="carrinho" class="bg-emerald-950 bg-opacity-90 fixed top-0 right-[-360px] h-screen w-[360px] text-white duration-300 z-50">
-    <div id="carrinho-header" class="flex justify-between items-center p-4">
-      <p>Meu Carrinho</p>
+  <section id="carrinho" class="bg-emerald-950 bg-opacity-95 fixed top-0 right-[-360px] h-screen w-[360px] text-white duration-300 z-50 p-5 flex flex-col items-center justify-between border-l-2 border-stone-400 overflow-y-auto">
+    <div id="carrinho-header" class="flex gap-20 py-3">
+      <p class="font-bold text-2xl">Meu Carrinho</p>
       <button id="btn-fechar-carrinho"><i class="fa-solid fa-circle-xmark text-4xl"></i></button>
     </div>
 
-    <div id="produto-carrinho" >
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
+    <div id="carrinho-main" class="">
+      <article class="max-w-[288px] flex bg-slate-400 border-2 border-solid rounded-lg">
+        <img class="w-16" src="assets/img/product-1.jpg" alt="">
+        <div class="px-5 py-2 flex flex-col justify-around text-black">
+          <p>Nome da roupa</p>
+          <p>Preço: $$</p>
+        </div>
+      </article>
+    </div>
 
-      <div class="flex justify-around items-center mt-4">
-        <p id="preco-total">Preço Total: <span>$$$</span></p>
-        <button id="btn-finalizar-compra" class="text-black font-bold p-1 bg-white">Finalizar Compra</button>
-      </div>
+    <div id="carrinho-botton" class="flex justify-around items-center gap-10 p-5">
+      <p id="preco-total">Total: <span>$$$</span></p>
+      <button id="btn-finalizar-compra" class="text-black font-bold p-1 bg-white active:bg-slate-400">Finalizar Compra</button>
     </div>
   </section>
 
