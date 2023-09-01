@@ -22,6 +22,24 @@ export function inicializarCarrinho() {
     btn_abrir_carrinho.addEventListener("click", btnCarrinho)
 }
 
-export function chamarCard() {
-    // para o item na lista com id == x retorna item
+export function addAoCarrinho(){
+    const carrino_main = document.querySelector("#carrinho-main")
+    const cardCarrinho = `
+    <article class="max-w-[288px] flex bg-slate-400 border-2 border-solid rounded-lg relative">
+        <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
+        <img class="w-16" src="assets/img/product-1.jpg" alt="">
+        <div class="px-5 py-2 flex flex-col justify-around text-black">
+          <p>Nome da roupa</p>
+          <div class="flex justify-between">
+            <p>$$</p>
+            <div class="flex gap-1 text-sm">
+              <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500">-1</button>
+              <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500">+1</button>
+            </div>
+          </div>
+        </div>
+    </article>`
+
+    carrino_main.innerHTML += cardCarrinho
+
 }
