@@ -23,5 +23,5 @@ export function inicializarCarrinho() {
 }
 
 export function chamarCard() {
-    
+    // para o item na lista com id == x retorna item
 }
