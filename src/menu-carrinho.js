@@ -26,27 +26,26 @@ export function inicializarCarrinho() {
   btn_abrir_carrinho.addEventListener("click", btnCarrinho);
 }
 
+const removerDoCarrinho = (idProduto) => {
+  delete ids_produtos_carrinho_quantidade[idProduto];
+};
+
 const incrementarQuantidade = (idProduto) => {
   ids_produtos_carrinho_quantidade[idProduto]++;
   atualizarInfoQuantidade(idProduto);
 };
+
 const decrementarQuantidade = (idProduto) => {
   ids_produtos_carrinho_quantidade[idProduto]--;
   atualizarInfoQuantidade(idProduto);
 };
+
 const atualizarInfoQuantidade = (idProduto) => {
   document.querySelector(`#output-quantidade-${idProduto}`).textContent =
     ids_produtos_carrinho_quantidade[idProduto];
 };
 
-export function addAoCarrinho(idProduto) {
-  if (idProduto in ids_produtos_carrinho_quantidade) {
-    incrementarQuantidade(idProduto);
-    return;
-  }
-
-  ids_produtos_carrinho_quantidade[idProduto] = 1;
-
+function deseharProdutoAoCarrinho(idProduto) {
   const item = produtos.find((p) => p.id === idProduto);
 
   const carrino_main = document.querySelector("#carrinho-main");
@@ -67,7 +66,6 @@ export function addAoCarrinho(idProduto) {
   }
 
   const cardCarrinho = `
-  
   <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
   
   <img class="w-16" src="${item.img}" alt="Imagem do produto ${item.nome}">
@@ -107,4 +105,15 @@ export function addAoCarrinho(idProduto) {
   document
     .querySelector(`#btn-incrementar-quantidade-${item.id}`)
     .addEventListener("click", () => incrementarQuantidade(idProduto));
+}
+
+export function addAoCarrinho(idProduto) {
+  if (idProduto in ids_produtos_carrinho_quantidade) {
+    incrementarQuantidade(idProduto);
+    return;
+  }
+
+  ids_produtos_carrinho_quantidade[idProduto] = 1;
+
+  deseharProdutoAoCarrinho(idProduto);
 }
