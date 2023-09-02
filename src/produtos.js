@@ -1,4 +1,4 @@
-export const produto = [
+export const produtos = [
     {
         id: 1,
         nome: "Camisa Larga com Bolsos",
