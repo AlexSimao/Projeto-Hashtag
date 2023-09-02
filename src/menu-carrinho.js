@@ -28,6 +28,7 @@ export function inicializarCarrinho() {
 
 const removerDoCarrinho = (idProduto) => {
   delete ids_produtos_carrinho_quantidade[idProduto];
+  renderizarProdutosCarrinho();
 };
 
 const incrementarQuantidade = (idProduto) => {
@@ -36,6 +37,10 @@ const incrementarQuantidade = (idProduto) => {
 };
 
 const decrementarQuantidade = (idProduto) => {
+  if (ids_produtos_carrinho_quantidade[idProduto] === 1) {
+    removerDoCarrinho(idProduto);
+    return;
+  }
   ids_produtos_carrinho_quantidade[idProduto]--;
   atualizarInfoQuantidade(idProduto);
 };
@@ -45,10 +50,10 @@ const atualizarInfoQuantidade = (idProduto) => {
     ids_produtos_carrinho_quantidade[idProduto];
 };
 
-function deseharProdutoAoCarrinho(idProduto) {
+function desenharProdutoAoCarrinho(idProduto) {
   const item = produtos.find((p) => p.id === idProduto);
 
-  const carrino_main = document.querySelector("#carrinho-main");
+  const carrinho_main = document.querySelector("#carrinho-main");
 
   const elementoArticle = document.createElement("article");
   const articleClasses = [
@@ -66,7 +71,9 @@ function deseharProdutoAoCarrinho(idProduto) {
   }
 
   const cardCarrinho = `
-  <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
+  <button id="btn-remove-do-carrinho-${
+    item.id
+  }" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
   
   <img class="w-16" src="${item.img}" alt="Imagem do produto ${item.nome}">
   
@@ -93,19 +100,30 @@ function deseharProdutoAoCarrinho(idProduto) {
   }" class="border-2 border-solid border-stone-800 rounded p-0 active:bg-stone-500 w-6">+</button>
   </div>
   </div>
-  </div>
-  </article>`;
+  </div>`;
 
   elementoArticle.innerHTML = cardCarrinho;
-  carrino_main.appendChild(elementoArticle);
+  carrinho_main.appendChild(elementoArticle);
 
   document
     .querySelector(`#btn-decrementar-quantidade-${item.id}`)
-    .addEventListener("click", () => decrementarQuantidade(idProduto));
+    .addEventListener("click", () => decrementarQuantidade(item.id));
   document
     .querySelector(`#btn-incrementar-quantidade-${item.id}`)
-    .addEventListener("click", () => incrementarQuantidade(idProduto));
+    .addEventListener("click", () => incrementarQuantidade(item.id));
+  document
+    .querySelector(`#btn-remove-do-carrinho-${item.id}`)
+    .addEventListener("click", () => removerDoCarrinho(item.id));
 }
+
+const renderizarProdutosCarrinho = () => {
+  const carrinho_main = document.querySelector("#carrinho-main");
+  carrinho_main.innerHTML = "";
+
+  for (const idProduto in ids_produtos_carrinho_quantidade) {
+    desenharProdutoAoCarrinho(idProduto);
+  }
+};
 
 export function addAoCarrinho(idProduto) {
   if (idProduto in ids_produtos_carrinho_quantidade) {
@@ -115,5 +133,5 @@ export function addAoCarrinho(idProduto) {
 
   ids_produtos_carrinho_quantidade[idProduto] = 1;
 
-  deseharProdutoAoCarrinho(idProduto);
+  desenharProdutoAoCarrinho(idProduto);
 }
