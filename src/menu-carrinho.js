@@ -1,5 +1,7 @@
 import { produtos } from "./produtos"
 
+const ids_produtos_carrinho_quantidade = {}
+
 export function inicializarCarrinho() {
     const carrinho = document.querySelector("#carrinho")
 
@@ -24,34 +26,59 @@ export function inicializarCarrinho() {
     btn_abrir_carrinho.addEventListener("click", btnCarrinho)
 }
 
+const incrementarQuantidade = (idProduto) => {
+  ids_produtos_carrinho_quantidade[idProduto]++
+  atualizarInfoQuantidade(idProduto)
+}
+const decrementarQuantidade = (idProduto) => {
+  ids_produtos_carrinho_quantidade[idProduto]--
+  atualizarInfoQuantidade(idProduto)
+}
+const atualizarInfoQuantidade = (idProduto) => {
+  document.querySelector(`#output-quantidade-${idProduto}`).textContent = ids_produtos_carrinho_quantidade[idProduto]
+}
+
 export function addAoCarrinho(idProduto){
+  
+  if (idProduto in ids_produtos_carrinho_quantidade) {
+    incrementarQuantidade(idProduto)
+    return
+  }
+  
+  ids_produtos_carrinho_quantidade[idProduto] = 1
+  
   const item = produtos.find((p) => p.id === idProduto)
 
   let carrino_main = document.querySelector("#carrinho-main")
-
+  
   const cardCarrinho = `
   <article class="max-w-[288px] flex bg-slate-300 border-2 border-solid rounded-lg relative">
   
-    <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
-
-    <img class="w-16" src="${item.img}" alt="Imagem do produto ${item.nome}">
-
-    <div class="px-5 py-2 flex flex-col justify-around text-black w-full">
-      <p class="text-sm">${item.nome}</p>
-
-      <div class="flex justify-between w-full">
-        <p class="text-lg">${item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</p>
-
-        <div class="flex gap-1 text-sm items-end">
-          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500 w-6">-</button>
-
-          <p class="px-1">2x</p>
-
-          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500 w-6">+</button>
-        </div>
-      </div>
-    </div>
+  <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
+  
+  <img class="w-16" src="${item.img}" alt="Imagem do produto ${item.nome}">
+  
+  <div class="px-5 py-2 flex flex-col justify-around text-black w-full">
+  <p class="text-sm">${item.nome}</p>
+  
+  <div class="flex justify-between w-full">
+  <p class="text-lg">${item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</p>
+  
+  <div class="flex gap-1 text-sm items-end">
+  <button id="btn-decrementar-quantidade-${item.id}" class="border-2 border-solid border-stone-800 rounded p-0 active:bg-stone-500 w-6">-</button>
+  
+  <p id="output-quantidade-${item.id}" class="px-1">${ids_produtos_carrinho_quantidade[item.id]}</p>
+  
+  <button id="btn-incrementar-quantidade-${item.id}" class="border-2 border-solid border-stone-800 rounded p-0 active:bg-stone-500 w-6">+</button>
+  </div>
+  </div>
+  </div>
   </article>`
 
   carrino_main.innerHTML += cardCarrinho
+
+  
+  document.querySelector(`#btn-decrementar-quantidade-${item.id}`).addEventListener("click",() => decrementarQuantidade(idProduto))
+  document.querySelector(`#btn-incrementar-quantidade-${item.id}`).addEventListener("click",() => incrementarQuantidade(idProduto))
+
 }
