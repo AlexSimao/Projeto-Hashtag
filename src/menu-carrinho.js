@@ -80,8 +80,8 @@ function desenharProdutoAoCarrinho(idProduto) {
   <div class="px-5 py-2 flex flex-col justify-around text-black w-full">
   <p class="text-sm">${item.nome}</p>
   
-  <div class="flex justify-between w-full">
-  <p class="text-lg">${item.preco.toLocaleString("pt-br", {
+  <div class="flex justify-between w-full gap-4">
+  <p class="text-lg">${Number(item.preco).toLocaleString("pt-br", {
     style: "currency",
     currency: "BRL",
   })}</p>

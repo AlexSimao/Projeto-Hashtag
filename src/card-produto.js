@@ -13,7 +13,7 @@ export const criarCard = () => {
 
             <p class="text-sm">${produto.marca}</p>
             <p class="text-sm">${produto.nome}</p>
-            <p>${produto.preco.toLocaleString("pt-br", {
+            <p>${Number(produto.preco).toLocaleString("pt-br", {
               style: "currency",
               currency: "BRL",
             })}</p>
