@@ -30,7 +30,7 @@ export function addAoCarrinho(idProduto){
   let carrino_main = document.querySelector("#carrinho-main")
 
   const cardCarrinho = `
-  <article class="max-w-[288px] flex bg-slate-300 border-2 border-solid rounded-lg relative overflow-hidden">
+  <article class="max-w-[288px] flex bg-slate-300 border-2 border-solid rounded-lg relative">
   
     <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
 
@@ -42,9 +42,12 @@ export function addAoCarrinho(idProduto){
       <div class="flex justify-between w-full">
         <p class="text-lg">${item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})}</p>
 
-        <div class="flex gap-1 text-sm">
-          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500">-1</button>
-          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500">+1</button>
+        <div class="flex gap-1 text-sm items-end">
+          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500 w-6">-</button>
+
+          <p class="px-1">2x</p>
+
+          <button class="border-2 border-solid border-stone-800 rounded px-1 active:bg-stone-500 w-6">+</button>
         </div>
       </div>
     </div>
