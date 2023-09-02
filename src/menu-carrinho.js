@@ -38,8 +38,7 @@ const atualizarInfoQuantidade = (idProduto) => {
   document.querySelector(`#output-quantidade-${idProduto}`).textContent = ids_produtos_carrinho_quantidade[idProduto]
 }
 
-export function addAoCarrinho(idProduto){
-  
+export function addAoCarrinho(idProduto){ 
   if (idProduto in ids_produtos_carrinho_quantidade) {
     incrementarQuantidade(idProduto)
     return
@@ -49,10 +48,16 @@ export function addAoCarrinho(idProduto){
   
   const item = produtos.find((p) => p.id === idProduto)
 
-  let carrino_main = document.querySelector("#carrinho-main")
+  const carrino_main = document.querySelector("#carrinho-main")
+
+  const elementoArticle = document.createElement("article")
+  const articleClasses = ['max-w-[288px]', 'flex', 'bg-slate-300', 'border-2', 'border-solid', 'rounded-lg', 'relative']
+
+  for (let articleClasse of articleClasses){
+    elementoArticle.classList.add(articleClasse)
+  }
   
   const cardCarrinho = `
-  <article class="max-w-[288px] flex bg-slate-300 border-2 border-solid rounded-lg relative">
   
   <button id="btn-remove-produto-carrinho" class=" absolute top-0 right-1"><i class="fa-solid fa-circle-xmark text-slate-700 hover:text-red-600 active:text-white"></i></button>
   
@@ -75,9 +80,9 @@ export function addAoCarrinho(idProduto){
   </div>
   </article>`
 
-  carrino_main.innerHTML += cardCarrinho
+  elementoArticle.innerHTML = cardCarrinho
+  carrino_main.appendChild(elementoArticle)
 
-  
   document.querySelector(`#btn-decrementar-quantidade-${item.id}`).addEventListener("click",() => decrementarQuantidade(idProduto))
   document.querySelector(`#btn-incrementar-quantidade-${item.id}`).addEventListener("click",() => incrementarQuantidade(idProduto))
 
