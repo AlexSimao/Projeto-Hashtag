@@ -1,4 +1,4 @@
-import { produtos } from "./produtos";
+import { produtos } from "./utilidades";
 
 const ids_produtos_carrinho_quantidade = {};
 
@@ -147,9 +147,9 @@ export function atualizarPrecoCarrinho() {
 
   for (let id_produto_no_carrinho in ids_produtos_carrinho_quantidade) {
     preco_total_carrinho +=
-    produtos.find((p) => p.id === id_produto_no_carrinho).preco *
-    ids_produtos_carrinho_quantidade[id_produto_no_carrinho];
-    
+      produtos.find((p) => p.id === id_produto_no_carrinho).preco *
+      ids_produtos_carrinho_quantidade[id_produto_no_carrinho];
+
     preco_carrinho.textContent = preco_total_carrinho.toLocaleString("pt-br", {
       style: "currency",
       currency: "BRL",

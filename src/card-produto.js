@@ -1,4 +1,4 @@
-import { produtos } from "./produtos.js";
+import { produtos } from "./utilidades.js";
 import { addAoCarrinho } from "./menu-carrinho.js";
 
 export const criarCard = () => {
