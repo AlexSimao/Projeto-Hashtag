@@ -29,11 +29,13 @@ export function inicializarCarrinho() {
 const removerDoCarrinho = (idProduto) => {
   delete ids_produtos_carrinho_quantidade[idProduto];
   renderizarProdutosCarrinho();
+  atualizarPrecoCarrinho();
 };
 
 const incrementarQuantidade = (idProduto) => {
   ids_produtos_carrinho_quantidade[idProduto]++;
   atualizarInfoQuantidade(idProduto);
+  atualizarPrecoCarrinho();
 };
 
 const decrementarQuantidade = (idProduto) => {
@@ -43,6 +45,7 @@ const decrementarQuantidade = (idProduto) => {
   }
   ids_produtos_carrinho_quantidade[idProduto]--;
   atualizarInfoQuantidade(idProduto);
+  atualizarPrecoCarrinho();
 };
 
 const atualizarInfoQuantidade = (idProduto) => {
@@ -114,6 +117,7 @@ function desenharProdutoAoCarrinho(idProduto) {
   document
     .querySelector(`#btn-remove-do-carrinho-${item.id}`)
     .addEventListener("click", () => removerDoCarrinho(item.id));
+  atualizarPrecoCarrinho();
 }
 
 const renderizarProdutosCarrinho = () => {
@@ -134,4 +138,21 @@ export function addAoCarrinho(idProduto) {
   ids_produtos_carrinho_quantidade[idProduto] = 1;
 
   desenharProdutoAoCarrinho(idProduto);
+}
+
+export function atualizarPrecoCarrinho() {
+  const preco_carrinho = document.querySelector("#preco-total > span");
+
+  let preco_total_carrinho = 0;
+
+  for (let id_produto_no_carrinho in ids_produtos_carrinho_quantidade) {
+    preco_total_carrinho +=
+    produtos.find((p) => p.id === id_produto_no_carrinho).preco *
+    ids_produtos_carrinho_quantidade[id_produto_no_carrinho];
+    
+    preco_carrinho.textContent = preco_total_carrinho.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
 }
