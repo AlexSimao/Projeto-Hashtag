@@ -1,4 +1,4 @@
-import { produtos } from "./utilidades";
+import { produtos, salvatLocalStorage } from "./utilidades";
 
 const ids_produtos_carrinho_quantidade = {};
 
@@ -41,6 +41,7 @@ const incrementarQuantidade = (idProduto) => {
 const decrementarQuantidade = (idProduto) => {
   if (ids_produtos_carrinho_quantidade[idProduto] === 1) {
     removerDoCarrinho(idProduto);
+    atualizarPrecoCarrinho();
     return;
   }
   ids_produtos_carrinho_quantidade[idProduto]--;
@@ -117,7 +118,6 @@ function desenharProdutoAoCarrinho(idProduto) {
   document
     .querySelector(`#btn-remove-do-carrinho-${item.id}`)
     .addEventListener("click", () => removerDoCarrinho(item.id));
-  atualizarPrecoCarrinho();
 }
 
 const renderizarProdutosCarrinho = () => {
@@ -138,6 +138,7 @@ export function addAoCarrinho(idProduto) {
   ids_produtos_carrinho_quantidade[idProduto] = 1;
 
   desenharProdutoAoCarrinho(idProduto);
+  atualizarPrecoCarrinho();
 }
 
 export function atualizarPrecoCarrinho() {

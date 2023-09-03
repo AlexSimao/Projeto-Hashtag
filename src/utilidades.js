@@ -64,3 +64,7 @@ export const produtos = [
     female: true,
   },
 ];
+
+export function salvatLocalStorage(chave, informacao) {
+  localStorage.setItem(chave, JSON.stringify(informacao));
+}
