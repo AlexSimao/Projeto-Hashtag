@@ -71,7 +71,49 @@
       </div>
     </section>
 
-    <main class="bg-stone-200">
+    <main class="bg-stone-200 flex flex-col items-center">
+      <section id="filtros" class="flex gap-8 p-10">
+        <div>
+          <input
+            class="peer hidden"
+            type="radio"
+            name="filtro"
+            id="filtro-todos"
+            checked
+          />
+          <label
+            class="peer-checked:bg-emerald-950 peer-checked:font-bold peer-checked:text-slate-200 p-2 border-2 border-solid rounded-md select-none cursor-pointer"
+            for="filtro-todos"
+            >Todos</label
+          >
+        </div>
+        <div>
+          <input
+            class="peer hidden"
+            type="radio"
+            name="filtro"
+            id="filtro-masculino"
+          />
+          <label
+            class="peer-checked:bg-emerald-950 peer-checked:font-bold peer-checked:text-slate-200 p-2 border-2 border-solid rounded-md select-none cursor-pointer"
+            for="filtro-masculino"
+            >Masculino</label
+          >
+        </div>
+        <div>
+          <input
+            class="peer hidden"
+            type="radio"
+            name="filtro"
+            id="filtro-feminino"
+          />
+          <label
+            class="peer-checked:bg-emerald-950 peer-checked:font-bold peer-checked:text-slate-200 p-2 border-2 border-solid rounded-md select-none cursor-pointer"
+            for="filtro-feminino"
+            >Feminino</label
+          >
+        </div>
+      </section>
       <section
         id="container-produto"
         class="flex flex-wrap justify-center gap-8 p-10"

@@ -6,7 +6,7 @@ export const criarCard = () => {
     const cardProduto = `
         <div id="card-produto-${
           produto.id
-        }" class="card-produto w-48 box-shadow  flex flex-col p-2 justify-between group shadow-lg shadow-slate-500 rounded-lg overflow-hidden">
+        }" class="card-produto w-48 box-shadow  flex flex-col p-2 justify-between group shadow-lg shadow-slate-500 rounded-lg overflow-hidden ${produto.female ? "feninino" : "masculino"}">
             <img class="group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-gray-300 duration-300 mb-4" src="${
               produto.img
             }" alt="Imagem do produto ${produto.nome}">
