@@ -1,6 +1,7 @@
-import { produtos, salvatLocalStorage } from "./utilidades";
+import { produtos, salvarLocalStorage, lerLocalStorage } from "./utilidades";
 
-const ids_produtos_carrinho_quantidade = {};
+export const ids_produtos_carrinho_quantidade =
+  lerLocalStorage("carrinho") ?? {};
 
 export function inicializarCarrinho() {
   const carrinho = document.querySelector("#carrinho");
@@ -28,12 +29,14 @@ export function inicializarCarrinho() {
 
 const removerDoCarrinho = (idProduto) => {
   delete ids_produtos_carrinho_quantidade[idProduto];
+  salvarLocalStorage("carrinho", ids_produtos_carrinho_quantidade);
   renderizarProdutosCarrinho();
   atualizarPrecoCarrinho();
 };
 
 const incrementarQuantidade = (idProduto) => {
   ids_produtos_carrinho_quantidade[idProduto]++;
+  salvarLocalStorage("carrinho", ids_produtos_carrinho_quantidade);
   atualizarInfoQuantidade(idProduto);
   atualizarPrecoCarrinho();
 };
@@ -45,6 +48,7 @@ const decrementarQuantidade = (idProduto) => {
     return;
   }
   ids_produtos_carrinho_quantidade[idProduto]--;
+  salvarLocalStorage("carrinho", ids_produtos_carrinho_quantidade);
   atualizarInfoQuantidade(idProduto);
   atualizarPrecoCarrinho();
 };
@@ -120,7 +124,7 @@ function desenharProdutoAoCarrinho(idProduto) {
     .addEventListener("click", () => removerDoCarrinho(item.id));
 }
 
-const renderizarProdutosCarrinho = () => {
+export const renderizarProdutosCarrinho = () => {
   const carrinho_main = document.querySelector("#carrinho-main");
   carrinho_main.innerHTML = "";
 
@@ -132,10 +136,12 @@ const renderizarProdutosCarrinho = () => {
 export function addAoCarrinho(idProduto) {
   if (idProduto in ids_produtos_carrinho_quantidade) {
     incrementarQuantidade(idProduto);
+    atualizarPrecoCarrinho();
     return;
   }
 
   ids_produtos_carrinho_quantidade[idProduto] = 1;
+  salvarLocalStorage("carrinho", ids_produtos_carrinho_quantidade);
 
   desenharProdutoAoCarrinho(idProduto);
   atualizarPrecoCarrinho();
@@ -151,6 +157,7 @@ export function atualizarPrecoCarrinho() {
       produtos.find((p) => p.id === id_produto_no_carrinho).preco *
       ids_produtos_carrinho_quantidade[id_produto_no_carrinho];
 
+    console.log(preco_carrinho[0]);
     preco_carrinho.textContent = preco_total_carrinho.toLocaleString("pt-br", {
       style: "currency",
       currency: "BRL",

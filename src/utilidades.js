@@ -65,6 +65,10 @@ export const produtos = [
   },
 ];
 
-export function salvatLocalStorage(chave, informacao) {
+export function salvarLocalStorage(chave, informacao) {
   localStorage.setItem(chave, JSON.stringify(informacao));
+}
+
+export function lerLocalStorage(chave) {
+  return JSON.parse(localStorage.getItem(chave));
 }
