@@ -12,4 +12,3 @@ inicializarFiltros();
 inicializarCarrinho();
 renderizarProdutosCarrinho();
 atualizarPrecoCarrinho();
-addAoCarrinho();

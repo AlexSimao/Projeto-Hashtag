@@ -1,7 +1,8 @@
 import { produtos, salvarLocalStorage, lerLocalStorage } from "./utilidades";
 
-export const ids_produtos_carrinho_quantidade =
-  lerLocalStorage("carrinho") ?? {};
+export const ids_produtos_carrinho_quantidade = lerLocalStorage("carrinho") ?? {
+  nada: 0,
+};
 
 export function inicializarCarrinho() {
   const carrinho = document.querySelector("#carrinho");
@@ -20,11 +21,13 @@ export function inicializarCarrinho() {
       carrinho.classList.add("right-[-360px]");
       // div_fechar_carrinho.style.display = "none"
     }
+    atualizarPrecoCarrinho();
   };
 
   div_fechar_carrinho.addEventListener("click", btnCarrinho);
   btn_fechar_carrinho.addEventListener("click", btnCarrinho);
   btn_abrir_carrinho.addEventListener("click", btnCarrinho);
+  renderizarProdutosCarrinho();
 }
 
 const removerDoCarrinho = (idProduto) => {
@@ -157,7 +160,6 @@ export function atualizarPrecoCarrinho() {
       produtos.find((p) => p.id === id_produto_no_carrinho).preco *
       ids_produtos_carrinho_quantidade[id_produto_no_carrinho];
 
-    console.log(preco_carrinho[0]);
     preco_carrinho.textContent = preco_total_carrinho.toLocaleString("pt-br", {
       style: "currency",
       currency: "BRL",
