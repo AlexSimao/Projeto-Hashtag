@@ -1,12 +1,18 @@
-import { ids_produtos_carrinho_quantidade } from "./src/menu-carrinho";
-import { desenharProdutoAoCarrinhoSimples, lerLocalStorage } from "./src/utilidades";
+import {
+  atualizarPrecoCarrinho,
+  ids_produtos_carrinho_quantidade,
+} from "./src/menu-carrinho";
+import { desenharProdutoAoCarrinhoSimples } from "./src/utilidades";
 
 function desenharProdutoCarrinhoCheckout() {
-    // const ids_produtos_carrinho_quantidade = lerLocalStorage("carrinho");
-
   for (let idProduto in ids_produtos_carrinho_quantidade) {
-    desenharProdutoAoCarrinhoSimples(idProduto, "container-produtos-checkout", ids_produtos_carrinho_quantidade[idProduto])
+    desenharProdutoAoCarrinhoSimples(
+      idProduto,
+      "container-produtos-checkout",
+      ids_produtos_carrinho_quantidade[idProduto]
+    );
+    atualizarPrecoCarrinho();
   }
 }
 
-desenharProdutoCarrinhoCheckout()
+desenharProdutoCarrinhoCheckout();

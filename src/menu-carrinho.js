@@ -1,8 +1,15 @@
 import { produtos, salvarLocalStorage, lerLocalStorage } from "./utilidades";
 
-export const ids_produtos_carrinho_quantidade = lerLocalStorage("carrinho") ?? {
-  nada: 0,
-};
+export const ids_produtos_carrinho_quantidade =
+  lerLocalStorage("carrinho") ?? {};
+
+function irParaCheckout() {
+  if (Object.keys(ids_produtos_carrinho_quantidade).length === 0) {
+    return;
+  }
+  window.location.href =
+    window.location.origin + "/Projeto-Hashtag/checkout.html";
+}
 
 export function inicializarCarrinho() {
   const carrinho = document.querySelector("#carrinho");
@@ -22,6 +29,9 @@ export function inicializarCarrinho() {
       // div_fechar_carrinho.style.display = "none"
     }
     atualizarPrecoCarrinho();
+    document
+      .querySelector("#btn-finalizar-compra")
+      .addEventListener("click", irParaCheckout);
   };
 
   div_fechar_carrinho.addEventListener("click", btnCarrinho);
@@ -164,5 +174,8 @@ export function atualizarPrecoCarrinho() {
       style: "currency",
       currency: "BRL",
     });
+  }
+  if (Object.keys(ids_produtos_carrinho_quantidade).length === 0) {
+    preco_carrinho.textContent = "R$ 0";
   }
 }
