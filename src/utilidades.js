@@ -72,3 +72,50 @@ export function salvarLocalStorage(chave, informacao) {
 export function lerLocalStorage(chave) {
   return JSON.parse(localStorage.getItem(chave));
 }
+
+function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, quantDeProduto) {
+  const item = produtos.find((p) => p.id === idProduto);
+
+  const carrinho_main = document.querySelector(`#${idContainerHTML}`);
+
+  const elementoArticle = document.createElement("article");
+  const articleClasses = [
+    "max-w-[288px]",
+    "flex",
+    "bg-slate-300",
+    "border-2",
+    "border-solid",
+    "rounded-lg",
+    "relative",
+  ];
+
+  for (let articleClasse of articleClasses) {
+    elementoArticle.classList.add(articleClasse);
+  }
+
+  const cardCarrinho = `
+  
+  <img class="w-16" src="${item.img}" alt="Imagem do produto ${item.nome}">
+  
+  <div class="px-5 py-2 flex flex-col justify-around text-black w-full">
+  <p class="text-sm">${item.nome}</p>
+  
+  <div class="flex justify-between w-full gap-4">
+  <p class="text-lg">${Number(item.preco).toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  })}</p>
+  
+  <div class="flex gap-1 text-sm items-end">
+  
+  <p id="output-quantidade-${item.id}" class="px-1">${
+    quantDeProduto
+  }</p>
+  
+  </div>
+  </div>
+  </div>`;
+
+  elementoArticle.innerHTML = cardCarrinho;
+  carrinho_main.appendChild(elementoArticle);
+}
