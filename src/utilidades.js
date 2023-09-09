@@ -73,20 +73,21 @@ export function lerLocalStorage(chave) {
   return JSON.parse(localStorage.getItem(chave));
 }
 
-function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, quantDeProduto) {
+export function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, quantDeProdutos) {
   const item = produtos.find((p) => p.id === idProduto);
 
   const carrinho_main = document.querySelector(`#${idContainerHTML}`);
 
   const elementoArticle = document.createElement("article");
   const articleClasses = [
-    "max-w-[288px]",
+    "min-w-[288px]",
     "flex",
     "bg-slate-300",
     "border-2",
     "border-solid",
     "rounded-lg",
     "relative",
+    "shadow-md"
   ];
 
   for (let articleClasse of articleClasses) {
@@ -109,7 +110,7 @@ function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, quantDePro
   <div class="flex gap-1 text-sm items-end">
   
   <p id="output-quantidade-${item.id}" class="px-1">${
-    quantDeProduto
+    quantDeProdutos
   }</p>
   
   </div>
