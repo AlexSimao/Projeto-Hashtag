@@ -15,4 +15,17 @@ function desenharProdutoCarrinhoCheckout() {
   }
 }
 
+function finalizarCompra(evento) {
+  evento.preventDefault();
+  if (Object.keys(ids_produtos_carrinho_quantidade).length === 0) {
+    return;
+  }
+
+  const dataAtual = new Date();
+  window.location.href =
+    window.location.origin + "/Projeto-Hashtag/pedidos.html";
+}
+
 desenharProdutoCarrinhoCheckout();
+
+document.addEventListener("submit", (evt) => finalizarCompra(evt));
