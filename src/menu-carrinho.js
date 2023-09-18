@@ -11,32 +11,31 @@ function irParaCheckout() {
     window.location.origin + "/Projeto-Hashtag/checkout.html";
 }
 
-export function inicializarCarrinho() {
+const btnCarrinho = () => {
   const carrinho = document.querySelector("#carrinho");
 
+  if (carrinho.classList.contains("right-[-360px]") == true) {
+    carrinho.classList.remove("right-[-360px]");
+    carrinho.classList.add("right-0");
+    // div_fechar_carrinho.style.display = "block"
+  } else if (carrinho.classList.contains("right-0") == true) {
+    carrinho.classList.remove("right-0");
+    carrinho.classList.add("right-[-360px]");
+    // div_fechar_carrinho.style.display = "none"
+  }
+  atualizarPrecoCarrinho();
+};
+
+export function inicializarCarrinho() {
   const btn_fechar_carrinho = document.querySelector("#btn-fechar-carrinho");
   const btn_abrir_carrinho = document.querySelector("#btn-carrinho");
   const div_fechar_carrinho = document.querySelector("#div-fechar-carrinho");
-
-  const btnCarrinho = () => {
-    if (carrinho.classList.contains("right-[-360px]") == true) {
-      carrinho.classList.remove("right-[-360px]");
-      carrinho.classList.add("right-0");
-      // div_fechar_carrinho.style.display = "block"
-    } else if (carrinho.classList.contains("right-0") == true) {
-      carrinho.classList.remove("right-0");
-      carrinho.classList.add("right-[-360px]");
-      // div_fechar_carrinho.style.display = "none"
-    }
-    atualizarPrecoCarrinho();
-    document
-      .querySelector("#btn-finalizar-compra")
-      .addEventListener("click", irParaCheckout);
-  };
+  const btn_ir_para_checkout = document.querySelector("#btn-finalizar-compra");
 
   div_fechar_carrinho.addEventListener("click", btnCarrinho);
   btn_fechar_carrinho.addEventListener("click", btnCarrinho);
   btn_abrir_carrinho.addEventListener("click", btnCarrinho);
+  btn_ir_para_checkout.addEventListener("click", irParaCheckout);
   renderizarProdutosCarrinho();
 }
 
