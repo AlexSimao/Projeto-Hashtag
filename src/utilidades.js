@@ -73,7 +73,15 @@ export function lerLocalStorage(chave) {
   return JSON.parse(localStorage.getItem(chave));
 }
 
-export function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, quantDeProdutos) {
+export function removerDoLocalStorage(chave) {
+  localStorage.removeItem(chave);
+}
+
+export function desenharProdutoAoCarrinhoSimples(
+  idProduto,
+  idContainerHTML,
+  quantDeProdutos
+) {
   const item = produtos.find((p) => p.id === idProduto);
 
   const carrinho_main = document.querySelector(`#${idContainerHTML}`);
@@ -87,7 +95,7 @@ export function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, qua
     "border-solid",
     "rounded-lg",
     "relative",
-    "shadow-md"
+    "shadow-md",
   ];
 
   for (let articleClasse of articleClasses) {
@@ -109,9 +117,7 @@ export function desenharProdutoAoCarrinhoSimples(idProduto, idContainerHTML, qua
   
   <div class="flex gap-1 text-sm items-end">
   
-  <p id="output-quantidade-${item.id}" class="px-1">${
-    quantDeProdutos
-  }</p>
+  <p id="output-quantidade-${item.id}" class="px-1">${quantDeProdutos}</p>
   
   </div>
   </div>
