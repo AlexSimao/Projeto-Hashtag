@@ -1,4 +1,3 @@
-import { criarCardsDoHistoricoDePedidos } from "./pedidos";
 import {
   atualizarPrecoCarrinho,
   ids_produtos_carrinho_quantidade,
@@ -40,8 +39,6 @@ function finalizarCompra(evento) {
 
   window.location.href =
     window.location.origin + "/Projeto-Hashtag/pedidos.html";
-
-  criarCardsDoHistoricoDePedidos(pedidosFeitos);
 }
 
 desenharProdutoCarrinhoCheckout();

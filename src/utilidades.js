@@ -84,7 +84,7 @@ export function desenharProdutoAoCarrinhoSimples(
 ) {
   const item = produtos.find((p) => p.id === idProduto);
 
-  const carrinho_main = document.querySelector(`#${idContainerHTML}`);
+  const carrinho_main = document.getElementById(`${idContainerHTML}`);
 
   const elementoArticle = document.createElement("article");
   const articleClasses = [
