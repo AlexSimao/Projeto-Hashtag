@@ -2,7 +2,12 @@ import {
   atualizarPrecoCarrinho,
   ids_produtos_carrinho_quantidade,
 } from "./src/menu-carrinho";
-import { desenharProdutoAoCarrinhoSimples } from "./src/utilidades";
+import {
+  desenharProdutoAoCarrinhoSimples,
+  lerLocalStorage,
+  removerDoLocalStorage,
+  salvarLocalStorage,
+} from "./src/utilidades";
 
 function desenharProdutoCarrinhoCheckout() {
   for (let idProduto in ids_produtos_carrinho_quantidade) {
@@ -22,6 +27,16 @@ function finalizarCompra(evento) {
   }
 
   const dataAtual = new Date();
+  const pedidosFeitos = {
+    dataDoPedido: dataAtual,
+    itensPedidos: ids_produtos_carrinho_quantidade,
+  };
+  const historicoDePedidos = lerLocalStorage("historico") ?? [];
+  const historicoDePedidosAtualizado = [pedidosFeitos, ...historicoDePedidos];
+
+  salvarLocalStorage("historico", historicoDePedidosAtualizado);
+  removerDoLocalStorage("carrinho");
+
   window.location.href =
     window.location.origin + "/Projeto-Hashtag/pedidos.html";
 }
