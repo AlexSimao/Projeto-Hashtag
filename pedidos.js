@@ -5,9 +5,18 @@ import {
 
 function criarCardsDoHistoricoDePedidos(pedidoComData) {
   const elementoPedido = `
-    <p class="text-lg font-bold">${pedidoComData.dataDoPedido}</p>
-    <section id="container-pedido-${pedidoComData.dataDoPedido}">
+    <section class="border-l-8 border-l-emerald-950 pl-8 p-4">
+        <p class="text-lg font-bold my-4">${new Date(
+          pedidoComData.dataDoPedido
+        ).toLocaleDateString("pt-br", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}</p>
+        <section class="flex flex-col gap-2" id="container-pedido-${
+          pedidoComData.dataDoPedido
+        }">
         
+        </section>
     </section>
     `;
   const main = document.querySelector("main");

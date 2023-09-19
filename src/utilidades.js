@@ -88,7 +88,7 @@ export function desenharProdutoAoCarrinhoSimples(
 
   const elementoArticle = document.createElement("article");
   const articleClasses = [
-    "min-w-[288px]",
+    "w-[288px]",
     "flex",
     "bg-slate-300",
     "border-2",

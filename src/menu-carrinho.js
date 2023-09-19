@@ -7,8 +7,7 @@ function irParaCheckout() {
   if (Object.keys(ids_produtos_carrinho_quantidade).length === 0) {
     return;
   }
-  window.location.href =
-    window.location.origin + "/Projeto-Hashtag/checkout.html";
+  window.location.href = window.location.origin + "/checkout.html";
 }
 
 const btnCarrinho = () => {
